@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-service-green
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crypto_service
+      version: green
+  template:
+    metadata:
+      labels:
+        app: crypto_service
+        version: green
+    spec:
+      containers:
+        - name: crypto_service
+          image: chaindushirantha/crypto_service:green
+          ports:
+            - containerPort: 80

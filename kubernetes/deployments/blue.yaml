@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crypto-service-blue
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crypto_service
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: crypto_service
+        version: blue
+    spec:
+      containers:
+        - name: crypto_service
+          image: chavindushirantha/crypto_service:blue
+          ports:
+            - containerPort: 80
