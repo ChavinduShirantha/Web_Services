@@ -1,6 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify,request
 
 app = Flask(__name__)
+
+coins=[]
 
 @app.route('/crypto', methods=['GET'])
 def get_crypto():
@@ -10,6 +12,12 @@ def get_crypto():
         "LTC": 298.56,
     }
     return jsonify(crypto), 200
+
+@app.route('/savecrypto', methods=['POST'])
+def create_crypto():
+    coin = request.json
+    coins.append(coin)
+    return jsonify(coin), 200
 
 
 if __name__ == '__main__':
